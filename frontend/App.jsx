@@ -1,15 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { PersonEndpoint } from './generated/endpoints';
+import '@vaadin/grid';
 import '@vaadin/button';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [people, setPeople] = useState([]);
 
-  const increment = () => setCount(count + 1);
+  useEffect(() => {
+    const getPeople = async () => setPeople(await PersonEndpoint.findAll());
+    getPeople();
+  }, []);
 
   return (
     <div>
-      <vaadin-button onClick={increment}>Hello</vaadin-button>
-      <span>The count is {count} </span>
+      <h1>React + Web Components + Vaadin Fusion</h1>
+      <vaadin-grid items={people}>
+        <vaadin-grid-column path="firstName" />
+        <vaadin-grid-column path="lastName" />
+        <vaadin-grid-column path="email" />
+        <vaadin-grid-column path="dateOfBirth" />
+      </vaadin-grid>
     </div>
   );
 }
