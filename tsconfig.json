@@ -10,7 +10,9 @@
     "module": "esNext",
     "target": "es2019",
     "moduleResolution": "node",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "strict": true,
+    "allowSyntheticDefaultImports": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noImplicitAny": true,
@@ -20,15 +22,10 @@
     "experimentalDecorators": true,
     "baseUrl": "frontend",
     "paths": {
-      "Frontend/*": [
-        "*"
-      ]
-    }
+      "Frontend/*": ["*"]
+    },
+    "jsx": "react-jsx"
   },
-  "include": [
-    "frontend/**/*.ts",
-    "frontend/index.js",
-    "types.d.ts"
-  ],
+  "include": ["frontend/**/*.ts", "frontend/index.ts", "types.d.ts", "frontend/index.ts"],
   "exclude": []
 }
