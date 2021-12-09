@@ -1,19 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { PersonEndpoint } from './generated/endpoints';
 import '@vaadin/grid';
 import '@vaadin/button';
 
 function App() {
   const [people, setPeople] = useState([]);
-
-  useEffect(() => {
-    const getPeople = async () => setPeople(await PersonEndpoint.findAll());
-    getPeople();
-  }, []);
+  const fetchData = async () => setPeople(await PersonEndpoint.findAll());
 
   return (
     <div>
       <h1>React + Web Components + Vaadin Fusion</h1>
+      <vaadin-button onClick={fetchData}>Fetch data</vaadin-button>
       <vaadin-grid items={people}>
         <vaadin-grid-column path="firstName" />
         <vaadin-grid-column path="lastName" />
