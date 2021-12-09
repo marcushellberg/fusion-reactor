@@ -18,7 +18,9 @@ public class PersonEndpoint {
     }
 
     @Nonnull
-    public List<@Nonnull Person> findAll() {
+    public List<@Nonnull Person> findAll() throws InterruptedException {
+        // Simulate slow backend call
+        Thread.sleep(2000);
         return repo.findAll();
     }
 
